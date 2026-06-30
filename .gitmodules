@@ -1,3 +1,6 @@
 [submodule "source_injection_dp1"]
 	path = source_injection_dp1
 	url = git@github.com:patricialarsen/source_injection_dp1.git
+[submodule "bps_parsl_sites"]
+	path = bps_parsl_sites
+	url = git@github.com:LSSTDESC/bps_parsl_sites.git
