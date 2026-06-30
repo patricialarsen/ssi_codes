@@ -1,0 +1,49 @@
+LSST_VERSION: w_2024_48
+instrument: LSSTComCam
+
+payload:
+  inCollection: LSSTComCam/DP1,u/plarsen_SSI/DP1_A360_injection_grid
+  butlerConfig: /global/cfs/cdirs/lsst/production/gen3/rubin/DP1/repo/butler.yaml
+  dataQuery: "band IN ('i','g','r','z') AND tract in (10463,10464,10704) AND skymap='lsst_cells_v1'"
+  output:  "u/plarsen_SSI/DP1_A360_step1_grid"
+  outputRun:  "u/plarsen_SSI/DP1_A360_step1_grid"
+  pipelineYaml: "${PWD}/DRP-injection.yaml#injected_step_a360_1"
+  submitPath: "${PWD}/submit/u/plarsen_SSI/DP1_A360_step1_grid" 
+
+numberOfRetries: 3
+requestMemory: 64000
+memoryMultiplier: 1
+
+wmsServiceClass: lsst.ctrl.bps.parsl.ParslService
+computeSite: work_queue
+#computeSite: local
+
+parsl:
+  log_level: WARN
+
+
+pipetask:
+  cmdlineArgs: ["--register-dataset-types", "-j", "16"]
+
+
+site:
+  local:
+    class: lsst.ctrl.bps.parsl.sites.Local
+    cores: 16
+    monitorEnable: true
+    monitorFilename: runinfo/monitoring.db
+  work_queue:
+    class: bps_parsl_sites.SlurmWorkQueue
+    nodes_per_block: 4
+    max_blocks: 1
+    max_workers: 64
+    walltime: "1:00:00"
+    exclusive: true
+    qos: regular
+    constraint: cpu
+    account: m1727
+    slurm_options: "--cpus-per-task=16 --mem=64000"
+    worker_options: ""  # total memory in MB
+    monitorEnable: true
+    monitorFilename: runinfo/monitoring.db
+

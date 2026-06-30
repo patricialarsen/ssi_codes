@@ -4,3 +4,12 @@
 [submodule "bps_parsl_sites"]
 	path = bps_parsl_sites
 	url = git@github.com:LSSTDESC/bps_parsl_sites.git
+[submodule "analysis_tools_dp1"]
+	path = analysis_tools_dp1
+	url = git@github.com:patricialarsen/analysis_tools_dp1.git
+[submodule "obs_base"]
+	path = obs_base
+	url = git@github.com:patricialarsen/obs_base.git
+[submodule "pipe_tasks_pl"]
+	path = pipe_tasks_pl
+	url = git@github.com:patricialarsen/pipe_tasks_pl.git
